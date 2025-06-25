@@ -1,0 +1,258 @@
+.speaking-practice {
+  padding: 20px;
+  text-align: center;
+}
+
+.instructions {
+  margin-bottom: 1.5rem;
+}
+
+.difficulty-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.difficulty-selector label {
+  margin: 0;
+  font-weight: 500;
+  min-width: 70px;
+}
+
+.difficulty-button {
+  background-color: var(--white);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  margin: 0 5px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.difficulty-button.active,
+.difficulty-button:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.target-sentence-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.target-sentence {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  flex-grow: 1;
+  border-radius: 0;
+}
+
+.listen-button {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 1.5em;
+  cursor: pointer;
+  margin-left: 15px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.listen-button:hover {
+  color: var(--primary-dark);
+}
+
+.speaking-practice button {
+  margin: 0 5px;
+}
+
+.stop-button {
+  background-color: var(--error-color);
+}
+
+.stop-button:hover {
+  background-color: var(--error-dark);
+}
+
+.transcript-container {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid var(--medium-gray);
+  border-radius: 5px;
+  background-color: var(--light-gray);
+}
+
+.interim-transcript {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #f3f4f6;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+}
+
+.interim-transcript p {
+  margin: 0;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.word-comparison {
+  margin: 1rem 0;
+  line-height: 1.8;
+}
+
+.word {
+  display: inline-block;
+  margin: 0 0.3rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 1.1rem;
+}
+
+.word-correct {
+  color: #2e7d32;
+  background: #e8f5e9;
+  border-radius: 3px;
+  padding: 0 3px;
+  margin: 0 1px;
+}
+
+.word-incorrect {
+  color: #c62828;
+  background: #ffebee;
+  border-radius: 3px;
+  padding: 0 3px;
+  margin: 0 1px;
+}
+
+.word-missing {
+  color: #757575;
+  font-style: italic;
+  background: #f5f5f5;
+  border-radius: 3px;
+  padding: 0 3px;
+  margin: 0 1px;
+}
+
+.word-extra {
+  color: #ef6c00;
+  font-style: italic;
+  background: #fff3e0;
+  border-radius: 3px;
+  padding: 0 3px;
+  margin: 0 1px;
+}
+
+.legend {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0.5em 1.2em 0.7em 1.2em;
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 0 8px 0 rgba(0,0,0,0.07);
+  border-top-right-radius: 10px;
+  font-size: 0.97em;
+  display: flex;
+  gap: 1.2em;
+  align-items: center;
+  z-index: 1000;
+}
+
+.legend .word {
+  padding: 0 6px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+.difficulty-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0;
+}
+
+.difficulty-btn {
+  padding: 0.4rem 1.2rem;
+  border: 1px solid #888;
+  background: #f5f5f5;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+.difficulty-btn.selected,
+.difficulty-btn:disabled {
+  background: #1976d2;
+  color: #fff;
+  border-color: #1976d2;
+  cursor: default;
+}
+
+.difficulty-btn:not(.selected):hover:not(:disabled) {
+  background: #e3eafc;
+  border-color: #1976d2;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #1976d2;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  padding: 0.2rem 0.5rem;
+  transition: color 0.2s;
+}
+
+.back-button:hover {
+  color: #0d47a1;
+  text-decoration: underline;
+}
+
+.sentence-audio-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.target-sentence {
+  margin: 0;
+}
+
+.sentence-card {
+  margin-bottom: 1.25rem;
+  margin-top: 3.5rem;
+}
+
+.controls {
+  margin-bottom: 1.25rem;
+}
+
+.transcript-section {
+  margin-bottom: 1.25rem;
+}
+
+.score-section {
+  margin-bottom: 1.25rem;
+  position: relative;
+  min-height: 5.5rem;
+}
+
+.speaking-practice-container h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+} 
