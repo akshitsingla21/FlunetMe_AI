@@ -3,7 +3,7 @@ import { useAuth } from './AuthContext';
 import { checkBadges } from '../data/badges';
 
 const UserDataContext = createContext(null);
-const API_URL = 'http://localhost:3001/api/users';
+const API_URL = import.meta.env.VITE_API_URL + '/users';
 
 const LEVEL_THRESHOLDS = {
   1: 100,
@@ -38,6 +38,7 @@ export const UserDataProvider = ({ children }) => {
   }, [user]);
 
   const updateProgressOnServer = async (progressData) => {
+    console.log('updateProgressOnServer called with:', progressData);
     if (!user || !token) return;
 
     try {
@@ -45,6 +46,7 @@ export const UserDataProvider = ({ children }) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
           userId: user.id,
