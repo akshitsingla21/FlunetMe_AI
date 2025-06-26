@@ -45,4 +45,28 @@ export const updateProgress = async (req: Request, res: Response) => {
     console.error('Error updating progress:', error);
     res.status(500).send('Server Error');
   }
+};
+
+// @desc   Get user profile
+// @route  GET /api/user/profile/:userId
+// @access Public (add auth middleware if you want to protect it)
+export const getProfile = async (req: Request, res: Response) => {
+  const { userId } = req.params;
+
+  try {
+    const user = await User.findById(userId).select('username points level badges');
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json({
+      id: user.id,
+      username: user.username,
+      points: user.points,
+      level: user.level,
+      badges: user.badges,
+    });
+  } catch (error) {
+    console.error('Error fetching profile:', error);
+    res.status(500).send('Server Error');
+  }
 }; 
