@@ -172,9 +172,7 @@ const SpeakingPractice = () => {
     if (normalizedTarget === normalizedAttempt) {
       setScore(100);
       setWordComparison(normalizedTarget.split(' ').map(word => ({ word, type: 'correct' })));
-      if (!isReattempt) {
-        addScore('speaking', 50); // Bonus for perfect match
-      }
+      addScore('speaking', 50); // Bonus for perfect match
       return;
     }
     // Use diffWords for visual feedback
@@ -185,10 +183,10 @@ const SpeakingPractice = () => {
     const totalScore = Math.round((correctCount / total) * 100);
     setWordComparison(diff);
     setScore(totalScore);
-    if (totalScore > 70 && !isReattempt) {
+    if (totalScore > 70) {
       addScore('speaking', totalScore - 50);
     }
-  }, [currentSentence, isReattempt, addScore]);
+  }, [currentSentence, addScore]);
 
   const startRecording = () => {
     if (!SpeechRecognition) {
