@@ -1,23 +1,45 @@
+/* Reset and base styles */
 .speaking-practice {
-  padding: 20px;
+  padding: 15px;
+  padding-top: 90px; /* Space for fixed header and back button */
   text-align: center;
-  position: relative;
-  padding-top: 70px; /* Increased padding for better spacing */
-  max-width: 100%;
+  max-width: 100vw;
   overflow-x: hidden;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-.instructions {
-  margin-bottom: 1.5rem;
+/* Back button styles */
+.back-button {
+  position: fixed;
+  top: 60px; /* Below the header */
+  left: 10px;
+  z-index: 999;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #1976d2;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
 
+.back-button:hover {
+  background: #f5f5f5;
+}
+
+/* Difficulty selector styles */
 .difficulty-selector {
+  margin: 20px auto;
+  max-width: 280px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 10px;
-  margin: 20px auto;
-  max-width: 300px; /* Limit width on mobile */
 }
 
 .difficulty-selector button {
@@ -25,87 +47,111 @@
   padding: 12px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  background: white;
+  background: #ffffff;
+  color: #333333;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .difficulty-selector button.active {
-  background: var(--primary-color);
-  color: white;
-  border-color: var(--primary-color);
+  background: #1976d2;
+  color: #ffffff;
+  border-color: #1976d2;
 }
 
+/* Target sentence styles */
 .target-sentence-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px 0;
-  background-color: var(--secondary-color);
-  border-radius: 8px;
+  margin: 20px auto;
   padding: 15px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  max-width: 90%;
 }
 
 .target-sentence {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: var(--text-color);
   margin: 0;
-  padding: 0;
-  background-color: transparent;
-  flex-grow: 1;
-  border-radius: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333333;
 }
 
 .listen-button {
   background: none;
   border: none;
-  color: var(--primary-color);
-  font-size: 1.5em;
+  color: #1976d2;
+  padding: 8px;
   cursor: pointer;
-  margin-left: 15px;
-  padding: 5px;
+  margin-top: 10px;
+}
+
+/* Recording button styles */
+.recording-button {
+  margin: 20px auto;
+  padding: 12px 24px;
+  background: #1976d2;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-}
-
-.listen-button:hover {
-  color: var(--primary-dark);
-}
-
-.speaking-practice button {
-  margin: 0 5px;
+  gap: 8px;
+  justify-content: center;
+  width: 90%;
+  max-width: 280px;
 }
 
 .stop-button {
-  background-color: var(--error-color);
+  background: #d32f2f;
 }
 
-.stop-button:hover {
-  background-color: var(--error-dark);
-}
-
+/* Transcript styles */
 .transcript-container {
-  margin-top: 20px;
+  margin: 20px auto;
   padding: 15px;
-  border: 1px solid var(--medium-gray);
-  border-radius: 5px;
-  background-color: var(--light-gray);
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  max-width: 90%;
 }
 
-.interim-transcript {
-  margin: 1rem 0;
-  padding: 1rem;
-  background-color: #f3f4f6;
-  border-radius: 0.5rem;
-  border: 1px solid #e5e7eb;
+/* Desktop styles */
+@media screen and (min-width: 768px) {
+  .speaking-practice {
+    padding: 20px;
+    padding-top: 100px;
+    max-width: 800px;
+  }
+
+  .back-button {
+    top: 70px;
+    left: 20px;
+    padding: 10px 16px;
+    font-size: 16px;
+  }
+
+  .difficulty-selector {
+    max-width: 400px;
+  }
+
+  .target-sentence-container {
+    padding: 20px;
+  }
+
+  .target-sentence {
+    font-size: 18px;
+  }
+
+  .recording-button {
+    padding: 15px 30px;
+    font-size: 18px;
+  }
 }
 
-.interim-transcript p {
-  margin: 0;
-  color: #6b7280;
-  font-style: italic;
+.instructions {
+  margin-bottom: 1.5rem;
 }
 
 .word-comparison {
@@ -205,29 +251,6 @@
 .difficulty-btn:not(.selected):hover:not(:disabled) {
   background: #e3eafc;
   border-color: #1976d2;
-}
-
-.back-button {
-  position: fixed; /* Changed to fixed */
-  top: 80px; /* Position below the header */
-  left: 20px;
-  z-index: 1000;
-  background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 8px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  text-decoration: none;
-  color: var(--primary-color);
-  font-weight: 500;
-  font-size: 14px;
-}
-
-.back-button:hover {
-  background: #f5f5f5;
 }
 
 .sentence-container {
