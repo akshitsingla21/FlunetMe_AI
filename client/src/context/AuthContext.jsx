@@ -6,25 +6,61 @@ const API_URL = import.meta.env.VITE_API_URL + '/auth';
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
-  const [loading, setLoading] = useState(true); // To handle initial load
+  const [loading, setLoading] = useState(true);
+
+  const refreshToken = async () => {
+    try {
+      const currentToken = localStorage.getItem('token');
+      if (!currentToken) {
+        throw new Error('No token found');
+      }
+
+      const response = await fetch(`${API_URL}/refresh`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: currentToken }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Token refresh failed');
+      }
+
+      const data = await response.json();
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      setUser(data.user);
+      setToken(data.token);
+      return data.token;
+    } catch (error) {
+      console.error('Token refresh failed, clearing user data');
+      logout();
+      throw error;
+    }
+  };
 
   useEffect(() => {
-    // This effect runs once when the component mounts
-    // to check if the user is already logged in.
-    const token = localStorage.getItem('token');
-    const userData = localStorage.getItem('user');
+    const initializeAuth = async () => {
+      try {
+        const storedToken = localStorage.getItem('token');
+        const storedUser = localStorage.getItem('user');
 
-    if (token && userData) {
-      // If we find a token and user data in storage,
-      // we set it in our state.
-      setUser(JSON.parse(userData));
-      setToken(token);
-    }
-    setLoading(false); // Finished loading
+        if (storedToken && storedUser) {
+          setToken(storedToken);
+          setUser(JSON.parse(storedUser));
+          // Try to refresh the token on initial load
+          await refreshToken();
+        }
+      } catch (error) {
+        console.error('Error during auth initialization:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initializeAuth();
   }, []);
 
   const register = async (username, password) => {
-    // We send a POST request to our register endpoint.
     const response = await fetch(`${API_URL}/register`, {
       method: 'POST',
       headers: {
@@ -32,7 +68,7 @@ export const AuthProvider = ({ children }) => {
       },
       body: JSON.stringify({ username, password }),
     });
-    return response.json(); // Return the server's response
+    return response.json();
   };
 
   const login = async (username, password) => {
@@ -43,37 +79,34 @@ export const AuthProvider = ({ children }) => {
     });
 
     if (!response.ok) {
-      // If the server responds with an error (e.g., 401 Unauthorized),
-      // we throw an error to be caught by the component.
       const errorData = await response.json();
       throw new Error(errorData.message || 'Failed to login');
     }
 
     const data = await response.json();
     
-    // On successful login, we get a token and user object.
-    // 1. Store the token and user data in localStorage for persistence.
     localStorage.setItem('token', data.token);
     localStorage.setItem('user', JSON.stringify(data.user));
-
-    // 2. Update the user state in our application.
     setUser(data.user);
     setToken(data.token);
   };
 
   const logout = () => {
-    // To logout, we clear the user from our state and
-    // remove their data from localStorage.
     setUser(null);
     setToken(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
   };
 
-  // We expose the new register function and a loading state.
-  // The loading state helps prevent a "flash" of the login page
-  // if the user is already authenticated.
-  const value = { user, token, loading, login, logout, register };
+  const value = {
+    user,
+    token,
+    loading,
+    login,
+    logout,
+    register,
+    refreshToken
+  };
 
   return (
     <AuthContext.Provider value={value}>

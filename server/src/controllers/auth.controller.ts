@@ -81,4 +81,53 @@ export const login = async (req: Request, res: Response) => {
     console.error(error);
     res.status(500).send('Server error');
   }
+};
+
+export const refresh = async (req: Request, res: Response) => {
+  const { token } = req.body;
+
+  if (!token) {
+    return res.status(400).json({ message: 'No token provided' });
+  }
+
+  try {
+    // Verify the existing token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as any;
+    
+    // Get fresh user data
+    const user = await User.findById(decoded.user.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Create a new token
+    const payload = {
+      user: {
+        id: user.id,
+      },
+    };
+
+    // Sign new token
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET as string,
+      { expiresIn: '5h' },
+      (err, newToken) => {
+        if (err) throw err;
+        res.json({
+          token: newToken,
+          user: {
+            id: user.id,
+            username: user.username,
+            points: user.points,
+            level: user.level,
+            badges: user.badges,
+          },
+        });
+      }
+    );
+  } catch (error) {
+    console.error('Token refresh error:', error);
+    return res.status(401).json({ message: 'Invalid token' });
+  }
 }; 
