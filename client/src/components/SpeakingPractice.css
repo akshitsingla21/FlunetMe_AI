@@ -330,4 +330,49 @@
     width: 20px;
     height: 20px;
   }
+}
+
+/* Sentence container styling */
+.sentence-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  margin: 20px 0;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.sentence-text {
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+  max-width: 800px; /* Limit the maximum width for better readability */
+}
+
+/* Center the sentence container while accounting for the speaker button */
+.practice-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+  .sentence-container {
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .sentence-text {
+    font-size: 1rem;
+  }
 } 
