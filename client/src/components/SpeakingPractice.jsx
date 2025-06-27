@@ -171,7 +171,8 @@ const SpeakingPractice = () => {
     if (normalizedTarget === normalizedAttempt) {
       setScore(100);
       setWordComparison(normalizedTarget.split(' ').map(word => ({ word, type: 'correct' })));
-      addScore('speaking', 50); // Bonus for perfect match
+      console.log('Perfect match! Awarding 50 points.');
+      addScore('speaking', 50); // Always award points for perfect match
       return;
     }
     // Use diffWords for visual feedback
