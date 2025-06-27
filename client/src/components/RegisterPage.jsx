@@ -18,10 +18,11 @@ const RegisterPage = () => {
     try {
       const response = await register(username, password);
       if (response.message === "User registered successfully!") {
-        setMessage('Registration successful! Redirecting to login...');
+        setMessage('Registered!');
         setTimeout(() => {
+          setMessage('');
           navigate('/login');
-        }, 2000);
+        }, 3000);
       } else {
         setError(response.message || 'Failed to register.');
       }
