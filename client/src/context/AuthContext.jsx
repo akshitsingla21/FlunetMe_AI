@@ -5,6 +5,7 @@ const API_URL = 'http://localhost:3001/api/auth';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true); // To handle initial load
 
   useEffect(() => {
@@ -17,6 +18,7 @@ export const AuthProvider = ({ children }) => {
       // If we find a token and user data in storage,
       // we set it in our state.
       setUser(JSON.parse(userData));
+      setToken(token);
     }
     setLoading(false); // Finished loading
   }, []);
@@ -56,12 +58,14 @@ export const AuthProvider = ({ children }) => {
 
     // 2. Update the user state in our application.
     setUser(data.user);
+    setToken(data.token);
   };
 
   const logout = () => {
     // To logout, we clear the user from our state and
     // remove their data from localStorage.
     setUser(null);
+    setToken(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
   };
@@ -69,7 +73,7 @@ export const AuthProvider = ({ children }) => {
   // We expose the new register function and a loading state.
   // The loading state helps prevent a "flash" of the login page
   // if the user is already authenticated.
-  const value = { user, loading, login, logout, register };
+  const value = { user, token, loading, login, logout, register };
 
   return (
     <AuthContext.Provider value={value}>
