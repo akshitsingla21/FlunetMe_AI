@@ -210,13 +210,14 @@
   background: none;
   border: none;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin: 16px 0;
+  margin: 16px;
   font-size: 16px;
   color: #1976d2;
-  width: fit-content; /* Prevent full width */
+  width: auto;
+  text-decoration: none;
 }
 
 .back-button img {
@@ -224,55 +225,85 @@
   height: 24px;
 }
 
+.sentence-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 20px auto;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.sentence-text {
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.speaker-button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 /* Mobile adjustments */
 @media screen and (max-width: 768px) {
   .back-button {
-    margin: 70px 16px 16px 16px; /* Increased side margins */
+    position: fixed;
+    top: 60px;
+    left: 10px;
+    margin: 0;
     padding: 8px;
     font-size: 14px;
-    align-self: flex-start; /* Align to the left */
-  }
-
-  .back-button img {
-    width: 20px;
-    height: 20px;
+    z-index: 100;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
 
   .sentence-container {
-    padding: 0 16px;
-    gap: 8px;
-    justify-content: center; /* Ensure center alignment */
-    margin: 16px auto; /* Center the container */
-    max-width: calc(100% - 32px); /* Account for padding */
+    margin: 100px auto 20px;
+    padding: 0 40px;
+    position: relative;
   }
 
   .sentence-text {
     font-size: 1rem;
     text-align: center;
-    margin: 0 auto; /* Center the text */
+    width: 100%;
+    padding: 0 30px;
+    box-sizing: border-box;
+  }
+
+  .speaker-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .practice-content {
-    padding: 0;
     width: 100%;
+    padding: 0;
+    margin-top: 40px;
   }
 }
 
 /* Ensure proper spacing for the entire practice section */
 .practice-section {
-  padding: 0 20px;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  width: 100%;
+  padding: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-}
-
-@media screen and (max-width: 768px) {
-  .practice-section {
-    padding: 0;
-  }
+  align-items: center;
 }
 
 .sentence-audio-row {
@@ -346,27 +377,6 @@
     width: 20px;
     height: 20px;
   }
-}
-
-/* Sentence container styling */
-.sentence-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-  margin: 20px 0;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-
-.sentence-text {
-  text-align: center;
-  font-size: 1.2rem;
-  line-height: 1.5;
-  margin: 0;
-  flex: 1;
-  max-width: 800px; /* Limit the maximum width for better readability */
 }
 
 /* Center the sentence container while accounting for the speaker button */
