@@ -1,95 +1,131 @@
 .header {
-  background-color: var(--white);
-  padding: 0 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  box-sizing: border-box;
+  background-color: var(--primary-color);
+  padding: 15px 20px;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header-content {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1300px;
-  margin: 0 auto;
-  height: 70px;
 }
 
-.header-title h1 {
-  font-size: 1.8em;
-  color: var(--primary-color);
-  margin: 0;
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
 }
 
-.header-nav {
+.nav-menu {
   display: flex;
+  gap: 20px;
   align-items: center;
-  gap: 15px;
-}
-
-.user-stats {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  background-color: var(--primary-color-light);
-  padding: 8px 15px;
-  border-radius: var(--border-radius);
-  font-weight: 600;
-  color: var(--primary-color);
 }
 
 .nav-link {
-  font-weight: 600;
+  color: white;
+  text-decoration: none;
   padding: 8px 12px;
-  border-radius: var(--border-radius);
-  transition: background-color var(--transition), color var(--transition);
+  border-radius: 4px;
+  transition: background-color 0.2s;
 }
 
 .nav-link:hover {
-  background-color: var(--primary-color-light);
-  color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-.logout-button {
-  background-color: var(--primary-color);
-  color: var(--white);
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.logout-button:hover {
-  background-color: var(--accent-color);
-  color: var(--white);
+.points-display {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.9rem;
 }
 
+/* Mobile menu button */
+.menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Mobile Responsive Design */
 @media (max-width: 768px) {
-  .header-content {
-    height: auto;
-    flex-direction: column;
-    padding: 15px 0;
-    gap: 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  .user-stats {
-    flex-direction: column;
-    gap: 5px;
+  .header {
     padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .header-nav {
-    width: 100%;
-    flex-direction: column;
-    gap: 10px;
   }
 
-  .nav-link, .logout-button {
+  .menu-button {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: var(--primary-color);
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-link {
     width: 100%;
     text-align: center;
-    box-sizing: border-box;
+    padding: 12px;
+  }
+
+  .user-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .points-display {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Landscape mode optimizations */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .header {
+    padding: 5px 10px;
+  }
+
+  .nav-menu.active {
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .header {
+    padding: 12px 15px;
+  }
+
+  .nav-menu {
+    gap: 15px;
   }
 } 
