@@ -216,6 +216,7 @@
   margin: 16px 0;
   font-size: 16px;
   color: #1976d2;
+  width: fit-content; /* Prevent full width */
 }
 
 .back-button img {
@@ -226,21 +227,34 @@
 /* Mobile adjustments */
 @media screen and (max-width: 768px) {
   .back-button {
-    margin: 70px 10px 16px 10px; /* Added top margin to prevent header overlap */
+    margin: 70px 16px 16px 16px; /* Increased side margins */
     padding: 8px;
     font-size: 14px;
+    align-self: flex-start; /* Align to the left */
   }
 
   .back-button img {
     width: 20px;
     height: 20px;
   }
-  
-  /* Ensure the practice container has proper spacing */
-  .practice-container {
-    padding-top: 0; /* Remove any top padding as we're using margin on back button */
-    padding-left: 10px;
-    padding-right: 10px;
+
+  .sentence-container {
+    padding: 0 16px;
+    gap: 8px;
+    justify-content: center; /* Ensure center alignment */
+    margin: 16px auto; /* Center the container */
+    max-width: calc(100% - 32px); /* Account for padding */
+  }
+
+  .sentence-text {
+    font-size: 1rem;
+    text-align: center;
+    margin: 0 auto; /* Center the text */
+  }
+
+  .practice-content {
+    padding: 0;
+    width: 100%;
   }
 }
 
@@ -251,11 +265,13 @@
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 768px) {
   .practice-section {
-    padding: 0 10px;
+    padding: 0;
   }
 }
 
