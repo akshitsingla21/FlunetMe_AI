@@ -3,7 +3,11 @@
   padding: 8px 20px;
   color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
 .header-content {
@@ -13,6 +17,24 @@
   justify-content: space-between;
   align-items: center;
   height: 40px;
+}
+
+.back-button-header {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.back-button-header:hover {
+  transform: translateX(-2px);
 }
 
 .logo {
@@ -87,6 +109,12 @@
 
   .logo {
     font-size: 1.3rem;
+  }
+
+  .back-button-header {
+    font-size: 20px;
+    padding: 4px;
+    margin-right: 4px;
   }
 
   .menu-button {

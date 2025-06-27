@@ -96,7 +96,6 @@ function diffWords(target, attempt) {
 
 const SpeakingPractice = () => {
   const navigate = useNavigate();
-  console.log('SpeakingPractice render');
   const { addScore } = useUserData();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -274,25 +273,17 @@ const SpeakingPractice = () => {
   }
 
   return (
-    <div className="speaking-practice-container">
-      <button className="back-button" onClick={() => navigate(-1)}>&larr; Back</button>
-      <h2>Speaking Practice</h2>
-      {error && <p className="error-message">{error}</p>}
+    <div className="speaking-practice">
+      <h2>SPEAKING PRACTICE</h2>
       
       <div className="difficulty-selector">
-        <label>Difficulty: </label>
+        <label>Difficulty:</label>
         <div className="difficulty-buttons">
           {['Easy', 'Medium', 'Hard'].map((level) => (
             <button
               key={level}
-              className={`difficulty-btn${difficulty === level ? ' selected' : ''}`}
-              onClick={() => {
-                setDifficulty(level);
-                setScore(null);
-                setFullTranscript('');
-                setWordComparison([]);
-                selectNewSentence();
-              }}
+              className={`difficulty-btn ${difficulty === level ? 'selected' : ''}`}
+              onClick={() => setDifficulty(level)}
               disabled={difficulty === level}
             >
               {level}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useUserData } from '../context/UserDataContext';
 import './Header.css';
@@ -8,6 +8,7 @@ const Header = () => {
   const { user, logout } = useAuth();
   const { points } = useUserData();
   const navigate = useNavigate();
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogout = () => {
@@ -19,9 +20,21 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Check if we should show back button (add routes where back button should appear)
+  const showBackButton = ['/speaking-practice', '/reading-practice'].includes(location.pathname);
+
   return (
     <header className="header">
       <div className="header-content">
+        {showBackButton && (
+          <button 
+            className="back-button-header" 
+            onClick={() => navigate(-1)}
+            aria-label="Go back"
+          >
+            ←
+          </button>
+        )}
         <Link to="/" className="logo">FluentMe_AI</Link>
         
         {user && (
