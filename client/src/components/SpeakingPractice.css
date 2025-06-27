@@ -255,4 +255,41 @@
   font-weight: 700;
   margin-bottom: 0.5em;
   text-transform: uppercase;
+}
+
+.speaker-button {
+  width: 40px;  /* Fixed width */
+  height: 40px; /* Fixed height to maintain square shape */
+  min-width: 40px; /* Prevent elongation */
+  min-height: 40px;
+  padding: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+.speaker-button img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Mobile-specific adjustments */
+@media screen and (max-width: 768px) {
+  .speaker-button {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 6px;
+  }
+  
+  .speaker-button img {
+    width: 20px;
+    height: 20px;
+  }
 } 
