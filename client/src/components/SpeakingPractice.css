@@ -2,7 +2,9 @@
   padding: 20px;
   text-align: center;
   position: relative;
-  padding-top: 60px; /* Add space for the back button */
+  padding-top: 70px; /* Increased padding for better spacing */
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .instructions {
@@ -11,29 +13,28 @@
 
 .difficulty-selector {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 300px; /* Limit width on mobile */
 }
 
-.difficulty-selector label {
-  margin: 0;
-  font-weight: 500;
-  min-width: 70px;
+.difficulty-selector button {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.difficulty-button {
-  background-color: var(--white);
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  margin: 0 5px;
-  transition: background-color 0.2s, color 0.2s;
-}
-
-.difficulty-button.active,
-.difficulty-button:hover {
-  background-color: var(--primary-color);
-  color: var(--white);
+.difficulty-selector button.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
 }
 
 .target-sentence-container {
@@ -207,10 +208,10 @@
 }
 
 .back-button {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  z-index: 100;
+  position: fixed; /* Changed to fixed */
+  top: 80px; /* Position below the header */
+  left: 20px;
+  z-index: 1000;
   background: white;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -222,6 +223,7 @@
   text-decoration: none;
   color: var(--primary-color);
   font-weight: 500;
+  font-size: 14px;
 }
 
 .back-button:hover {
@@ -262,31 +264,31 @@
   }
 
   .back-button {
-    top: 10px;
-    left: 10px;
+    top: 70px; /* Adjusted for mobile header height */
+    left: 15px;
+    padding: 6px 12px;
+    font-size: 14px;
   }
 
   .difficulty-selector {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
+    margin: 15px auto;
+    padding: 0 10px;
   }
 
-  .difficulty-buttons {
-    flex-wrap: wrap;
-    justify-content: center;
+  .difficulty-selector button {
+    padding: 10px;
+    font-size: 14px;
   }
 
   .target-sentence-container {
-    margin: 15px 0;
+    margin: 15px 10px;
     padding: 12px;
-    flex-direction: column;
-    gap: 10px;
   }
 
   .target-sentence {
-    font-size: 1.1em;
-    padding: 8px;
+    font-size: 16px;
+    line-height: 1.4;
+    padding: 10px;
   }
 
   .listen-button {
