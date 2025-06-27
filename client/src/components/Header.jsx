@@ -13,11 +13,18 @@ const Header = () => {
 
   const handleLogout = () => {
     logout();
+    setIsMenuOpen(false);
     navigate('/login');
   };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Close menu on nav link click
+  const handleNavClick = (to) => {
+    setIsMenuOpen(false);
+    if (to) navigate(to);
   };
 
   // Check if we should show back button (add routes where back button should appear)
@@ -40,17 +47,16 @@ const Header = () => {
         </div>
         {user && (
           <>
-            <span className="points-display header-points">Points: {points}</span>
             <button className="menu-button" onClick={toggleMenu} aria-label="Toggle menu">
               ☰
             </button>
             <nav className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
-              <Link to="/" className="nav-link">Dashboard</Link>
-              <Link to="/profile" className="nav-link">Profile</Link>
-              <Link to="/leaderboard" className="nav-link">Leaderboard</Link>
+              <span onClick={() => handleNavClick('/')} className="nav-link" style={{cursor:'pointer'}}>Dashboard</span>
+              <span onClick={() => handleNavClick('/profile')} className="nav-link" style={{cursor:'pointer'}}>Profile</span>
+              <span onClick={() => handleNavClick('/leaderboard')} className="nav-link" style={{cursor:'pointer'}}>Leaderboard</span>
               <div className="user-info">
                 <span className="points-display">Points: {points}</span>
-                <button onClick={handleLogout} className="nav-link">Logout</button>
+                <span onClick={handleLogout} className="nav-link" style={{cursor:'pointer'}}>Logout</span>
               </div>
             </nav>
           </>

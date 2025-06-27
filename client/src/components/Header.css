@@ -72,9 +72,15 @@
 
 .nav-menu {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   align-items: center;
   height: 100%;
+}
+
+.nav-menu .nav-link {
+  margin: 2px 0;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 .nav-link {
@@ -153,8 +159,8 @@
     right: 0;
     background-color: var(--primary-color);
     flex-direction: column;
-    padding: 8px;
-    gap: 8px;
+    padding: 4px;
+    gap: 2px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     height: auto;
@@ -165,9 +171,8 @@
   }
 
   .nav-link {
-    width: 100%;
-    text-align: center;
-    padding: 8px;
+    padding: 6px 0;
+    margin: 0;
   }
 
   .user-info {
