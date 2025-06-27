@@ -81,9 +81,10 @@
 
 .points-display {
   background: rgba(255, 255, 255, 0.1);
-  padding: 4px 10px;
-  border-radius: 15px;
-  font-size: 0.9rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  white-space: nowrap;
 }
 
 /* Mobile menu button */
@@ -92,9 +93,14 @@
   background: none;
   border: none;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   cursor: pointer;
   padding: 4px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Mobile Responsive Design */
@@ -118,7 +124,7 @@
   }
 
   .menu-button {
-    display: block;
+    display: flex;
   }
 
   .nav-menu {
@@ -154,8 +160,8 @@
   }
 
   .points-display {
-    width: 100%;
-    text-align: center;
+    padding: 3px 6px;
+    font-size: 0.8rem;
   }
 }
 
