@@ -205,20 +205,58 @@
 }
 
 .back-button {
+  position: relative;
+  padding: 10px;
   background: none;
   border: none;
-  color: #1976d2;
-  font-size: 1rem;
-  font-weight: 500;
   cursor: pointer;
-  margin-bottom: 1rem;
-  padding: 0.2rem 0.5rem;
-  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0;
+  font-size: 16px;
+  color: #1976d2;
 }
 
-.back-button:hover {
-  color: #0d47a1;
-  text-decoration: underline;
+.back-button img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+  .back-button {
+    margin: 70px 10px 16px 10px; /* Added top margin to prevent header overlap */
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .back-button img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Ensure the practice container has proper spacing */
+  .practice-container {
+    padding-top: 0; /* Remove any top padding as we're using margin on back button */
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+/* Ensure proper spacing for the entire practice section */
+.practice-section {
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+  .practice-section {
+    padding: 0 10px;
+  }
 }
 
 .sentence-audio-row {
