@@ -26,7 +26,7 @@ const Header = () => {
         
         {user && (
           <>
-            <button className="menu-button" onClick={toggleMenu}>
+            <button className="menu-button" onClick={toggleMenu} aria-label="Toggle menu">
               ☰
             </button>
             
