@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useUserData } from '../context/UserDataContext';
@@ -6,35 +6,42 @@ import './Header.css';
 
 const Header = () => {
   const { user, logout } = useAuth();
-  const { points, level } = useUserData();
+  const { points } = useUserData();
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <header className="header">
       <div className="header-content">
-        <Link to="/" className="header-title">
-          <h1>FluentMe_AI</h1>
-        </Link>
-        <nav className="header-nav">
-          {user ? (
-            <>
-              <div className="user-stats">
-                <span>Level: {level}</span>
-                <span>Points: {points}</span>
-              </div>
-              <Link to="/leaderboard" className="nav-link">Leaderboard</Link>
+        <Link to="/" className="logo">FluentMe_AI</Link>
+        
+        {user && (
+          <>
+            <button className="menu-button" onClick={toggleMenu}>
+              ☰
+            </button>
+            
+            <nav className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
+              <Link to="/" className="nav-link">Dashboard</Link>
               <Link to="/profile" className="nav-link">Profile</Link>
-              <button onClick={handleLogout} className="logout-button">Logout</button>
-            </>
-          ) : (
-            <Link to="/login" className="nav-link">Login</Link>
-          )}
-        </nav>
+              <Link to="/leaderboard" className="nav-link">Leaderboard</Link>
+              
+              <div className="user-info">
+                <span className="points-display">Points: {points}</span>
+                <button onClick={handleLogout} className="nav-link">Logout</button>
+              </div>
+            </nav>
+          </>
+        )}
       </div>
     </header>
   );
